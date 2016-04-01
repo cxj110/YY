@@ -1,40 +1,4 @@
-# Spring Cloud Example Project
-
-An example project that demonstrates an end-to-end cloud-native platform using Spring Cloud for building a practical microservices architecture.
-
-
-
-Demonstrated concepts:
-
-* Integration testing using Docker
-* Polyglot persistence
-* Microservice architecture
-* Service discovery
-* API gateway
-
-## Docker
-
-Each service is built and deployed using Docker. End-to-end integration testing can be done on a developer's machine using Docker compose.
-
-## Polyglot Persistence
-
-One of the core concepts of this example project is how polyglot persistence can be approached in practice. Microservices in the project use their own database, while integrating with the data from other services through REST or a message bus.
-
-* Neo4j (graph)
-* MongoDB (document)
-* MySQL (relational)
-
-## Movie Recommendations
-
-This example project focuses on movies and recommendations.
-
-### Data Services
-
-![http://i.imgur.com/NXLHvjR.png](http://i.imgur.com/NXLHvjR.png)
-
-### Domain Data
-
-![http://i.imgur.com/VlwSw2q.png](http://i.imgur.com/VlwSw2q.png)
+# Spring Cloud  Project
 
 ## Microservice architecture
 
