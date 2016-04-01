@@ -1,0 +1,58 @@
+
+---
+spring:
+  profiles: cloud
+  jpa:
+    show_sql: false
+    database: MYSQL
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect:org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://192.168.1.106:3307/canlehui?useUnicode=true&amp;characterEncoding=utf8
+    username: admin
+    password: abcd1234
+    driver-class-name: com.mysql.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+server:
+  port: 9003
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://pro-discovery:8761/eureka/
+  instance:
+    hostname: pro-storemgmt
+    nonSecurePort: 80
+ribbon:
+  eureka:
+    enabled: true
+---
+spring:
+  profiles: development
+  jpa:
+    show_sql: false
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://192.168.1.107:3307/canlehui?useUnicode=true&amp;characterEncoding=utf8
+    username: admin
+    password: abcd1234
+    driver-class-name: com.mysql.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+server:
+  port: 9003
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+ribbon:
+  eureka:
+    enabled: false
+

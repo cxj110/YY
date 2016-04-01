@@ -1,0 +1,65 @@
+server:
+  port:9999
+  ssl:
+    key-store: classpath:server.jks
+    key-store-password: password
+    key-password: password
+  contextPath=/uaa
+
+email:
+  username: cxj_hit
+  password: !7751521cxj@
+mail:
+  smtp:
+    host: smtp.126.com
+    port: 25
+    auth: true
+    starttls:
+      enable: true
+
+security:
+  sessions: stateless
+  basic:
+    enabled: false
+
+spring:
+ # profiles:
+ #   active: ${profile:default}
+  aop:
+    proxy-target-class: true
+  redis:
+    host: localhost
+    port: 6379
+    default_expire_time: 86400
+  # DataSource settings: set here your own configurations for the database
+  # connection.
+  datasource:
+    url: jdbc:mysql://localhost:3307/vaadin?useUnicode=true&amp;characterEncoding=utf8
+    username: vaadin
+    password: abcd1234
+    driver-class-name: com.mysql.jdbc.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+  jpa:
+    # Specify the DBMS
+    database: MYSQL
+    # Show or not log for each sql query
+    show_sql: false
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, update)
+      ddl-auto: update
+      # Naming strategy
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        # Use spring.jpa.properties.* for Hibernate native properties (the prefix is
+        # stripped before adding them to the entity manager)
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+flyway:
+  enabled: false
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    com.netflix.discovery: 'OFF'

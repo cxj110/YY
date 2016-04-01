@@ -1,0 +1,107 @@
+
+---
+spring:
+  profiles: cloud
+  cloud:
+    config:
+      discovery:
+        enabled: true
+      server:
+        git:
+          uri: https://github.com/cxj110/clh-config
+        health:
+          repositories:
+            adminmgmt:
+              label: master
+              profiles: cloud
+            ordermgmt:
+              label: master
+              profiles: cloud
+            storemgmt:
+              label: master
+              profiles: cloud
+            usermgmt:
+              label: master
+              profiles: cloud
+            workflow:
+              label: master
+              profiles: cloud
+            adminui:
+              label: master
+              profiles: cloud
+            storemgmtui:
+              label: master
+              profiles: cloud
+            webui:
+              label: master
+              profiles: cloud
+server:
+  port: 8888
+  
+eureka:
+  instance:
+    hostname: configserver
+  client:
+    #registerWithEureka: true
+    #fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://pro-discovery:8761/eureka/
+info:
+  description: Config Server
+  url: https://github.com/cxj110/clh-config
+
+---
+spring:
+  profiles: development
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cxj110/clh-config
+        health:
+          repositories:
+            adminmgmt:
+              label: master
+              profiles: cloud
+            ordermgmt:
+              label: master
+              profiles: cloud
+            storemgmt:
+              label: master
+              profiles: cloud
+            usermgmt:
+              label: master
+              profiles: cloud
+            workflow:
+              label: master
+              profiles: cloud
+            adminui:
+              label: master
+              profiles: cloud
+            storemgmtui:
+              label: master
+              profiles: cloud
+            webui:
+              label: master
+              profiles: cloud
+server:
+  port: 8888
+
+eureka:
+  instance:
+    preferIpAddress: true
+    #hostname: configserver
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    nonSecurePort: 8888
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+    
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+
+  
+          

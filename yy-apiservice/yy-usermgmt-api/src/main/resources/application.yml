@@ -1,0 +1,93 @@
+server:
+  port: 0
+  ssl:
+    enabled: false
+    # Problem with trust-store properties?
+    #
+    # Instead use: java -Djavax.net.debug=ssl -Djavax.net.ssl.trustStore=src/main/resources/truststore.jks -Djavax.net.ssl.trustStorePassword=password -jar build/libs/*.jar
+    #
+    # trust-store: classpath:truststore.jks
+    trust-store: src/main/resources/truststore.jks
+    trust-store-password: password
+
+info:
+  component: User Management API Service
+
+security:
+  oauth2:
+    resource:
+      userInfoUri: https://localhost:9999/uaa/user
+
+management:
+  security:
+    enabled: false
+
+hystrix:
+  threadpool:
+    default:
+      # Maximum number of concurrent requests when using thread pools (Default: 10)
+      coreSize: 100
+      # Maximum LinkedBlockingQueue size - -1 for using SynchronousQueue (Default: -1)
+      maxQueueSize: -1
+      # Queue size rejection threshold (Default: 5)
+      queueSizeRejectionThreshold: 5
+  command:
+    default:
+      circuitBreaker:
+        sleepWindowInMilliseconds: 30000
+        requestVolumeThreshold: 2
+      execution:
+        isolation:
+#          strategy: SEMAPHORE, no thread pool but timeout handling stops to work
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 6000
+
+#ribbon:
+#  ConnectTimeout: 100
+#  ReadTimeout: 3000
+
+app:
+  ConnectTimeout: 100
+  ReadTimeout: 5000
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 3
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${random.value}}}
+  client:
+    # Default values comes from org.springframework.cloud.netflix.eurek.EurekaClientConfigBean
+    registryFetchIntervalSeconds: 5
+    instanceInfoReplicationIntervalSeconds: 5
+    initialInstanceInfoReplicationIntervalSeconds: 5
+
+logging:
+  level:
+    root: WARN
+    se.callista: INFO
+    # Set DEBUG level on Hystrix to get an error message when a fallback method is used.
+    com.netflix.hystrix: DEBUG
+
+---
+# For deployment in Docker containers
+spring:
+  profiles: docker
+security:
+  oauth2:
+    resource:
+      userInfoUri: https://auth:9999/uaa/user
+
+server:
+  port: 8080
+
+app:
+  rabbitmq:
+    host: rabbit
+
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/

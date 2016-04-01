@@ -1,0 +1,57 @@
+info:
+  component: Hystrix Dashboard
+  
+endpoints:
+  restart:
+    enabled: true
+  shutdown:
+    enabled: true
+
+server:
+  port: 7979
+
+---
+spring:
+  profiles: cloud
+eureka:
+  client:
+    registryFetchIntervalSeconds: 3
+    serviceUrl:
+      defaultZone: http://pro-discovery:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    preferIpAddress: true
+turbine:
+  appConfig: adminmgmt,ordermgmt,storemgmt,usermgmt,workflow,recommendation,adminui,storemgmtui,webui
+  aggregator:
+    clusterConfig: ADMINMGMT,ORDERMGMT,STOREMGMT,USERMGMT,WORKFLOW,RECOMMENDATION,ADMINUI,STOREMGMTUI,WEBUI
+
+
+spring.cloud.config.discovery.enabled: true
+
+---
+spring:
+  profiles: development
+  
+eureka:
+  client:
+    registryFetchIntervalSeconds: 3
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    preferIpAddress: true
+    leaseRenewalIntervalInSeconds: 5
+    #hostname: hystrix
+    #Virtual host name by which the clients identifies this service
+    #virtualHostName: ${spring.application.name}
+
+turbine:
+  appConfig: adminmgmt,ordermgmt,storemgmt,usermgmt,workflow,recommendation,adminui,storemgmtui,webui
+  aggregator:
+    clusterConfig: ADMINMGMT,ORDERMGMT,STOREMGMT,USERMGMT,WORKFLOW,RECOMMENDATION,ADMINUI,STOREMGMTUI,WEBUI
+    
+
+spring.cloud.config.discovery.enabled: true

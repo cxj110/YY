@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yy</groupId>
+		<artifactId>yy-cloud</artifactId>
+		<version>2.0.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<version>2.0.0</version>
+	<artifactId>yy-baseplatform</artifactId>
+	<packaging>pom</packaging>
+	<name>YouYin - Cloud Support Services</name>
+	<description>YouYin Cloud Support Services</description>
+	<url>http://www.YouYin.com</url>
+	<properties>
+		<project.uri>${project.baseUri}/../</project.uri>
+	</properties>
+	<licenses>
+		<license>
+			<name>Apache 2</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+			<distribution>repo</distribution>
+			<comments>A business-friendly OSS license</comments>
+		</license>
+	</licenses>
+	<developers>
+		<developer>
+			<id>xuejin</id>
+			<name>Chen XueJin</name>
+			<email>chenxuejin@YouYin.com</email>
+			<organization>YouYin</organization>
+			<organizationUrl>http://www.YouYin.com</organizationUrl>
+			<roles>
+				<role>cto</role>
+				<role>architect</role>
+				<role>developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+		<developer>
+			<id>Lichen</id>
+			<name>Li Chen</name>
+			<email>lichen@YouYin.com</email>
+			<organization>YouYin</organization>
+			<organizationUrl>http://www.YouYin.com</organizationUrl>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>+8</timezone>
+		</developer>
+	</developers>
+	<modules>
+		<module>yy-discovery</module>
+		<module>yy-api-gateway</module>
+		<module>yy-edge-server</module>
+		<module>yy-config</module>
+		<module>yy-hystrix-dashboard</module> <!-- 
+		<module>yy-consul</module> -->
+		<module>yy-auth-server</module>
+	</modules>
+</project>

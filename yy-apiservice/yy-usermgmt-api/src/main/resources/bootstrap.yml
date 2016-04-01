@@ -1,0 +1,18 @@
+
+---
+spring:
+  profiles: cloud
+  application:
+    name: usermgmt
+  cloud:
+    config:
+      uri: http://pro-configserver:8888
+encrypt:
+  failOnError: false
+---
+spring:
+  profiles: development
+  application:
+    name: usermgmt
+encrypt:
+  failOnError: false

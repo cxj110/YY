@@ -1,0 +1,22 @@
+
+---
+spring:
+  profiles: cloud
+  application:
+    name: discovery
+  #cloud:
+    #config:
+      #uri: http://pro-configserver:8888
+encrypt:
+  failOnError: false
+---
+spring:
+  profiles: development
+  application:
+    name: discovery
+  cloud:
+    config:
+      uri: http://configserver:8888
+      #uri: http://${CONFIGSERVER_PORT_8888_TCP_ADDR}:8888
+encrypt:
+  failOnError: false

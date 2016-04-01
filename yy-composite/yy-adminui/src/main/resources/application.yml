@@ -1,0 +1,30 @@
+
+---
+spring:
+  profiles: cloud
+server:
+  port: 9007
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://pro-discovery:8761/eureka/
+  instance:
+    hostname: pro-adminui
+    nonSecurePort: 80
+ribbon:
+  eureka:
+    enabled: true
+---
+spring:
+  profiles: development
+server:
+  port: 9007
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    preferIpAddress: true
+ribbon:
+  eureka:
+    enabled: false

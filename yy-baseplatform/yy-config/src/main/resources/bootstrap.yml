@@ -1,0 +1,38 @@
+
+---
+spring:
+  profiles: cloud
+  application:
+    name: configServer
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/cxj110/clh-config
+encrypt:
+  failOnError: false
+eureka:
+  instance:
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    preferIpAddress: true
+    #hostname: config-99.cfapps.io
+    nonSecurePort: 80
+    metadataMap:
+      instanceId: ${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://pro-discovery:8761/eureka/
+info:
+  description: Config Server
+  url: https://github.com/cxj110
+  
+---
+spring:
+  profiles: development
+  application:
+    name: configserver
+    
+  

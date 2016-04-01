@@ -1,0 +1,22 @@
+
+---
+spring:
+  profiles: cloud
+  application:
+    name: storemgmt
+  cloud:
+    config:
+      uri: http://pro-configserver:8888
+encrypt:
+  failOnError: false
+---
+spring:
+  profiles:
+    name: development
+  application:
+    name: storemgmt
+  cloud:
+    config:
+      uri: http://configserver:8888
+encrypt:
+  failOnError: false

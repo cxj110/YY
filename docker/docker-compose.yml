@@ -1,0 +1,46 @@
+
+discovery:
+  image: canlehui/clh-discovery
+  environment:
+   - SPRING_PROFILES_ACTIVE=development
+  ports:
+   - "8761:8761"
+
+configserver:
+  image: canlehui/clh-config
+  environment:
+    - SPRING_PROFILES_ACTIVE=development
+  ports:
+   - "8888:8888"
+  links:
+   - discovery
+   
+gateway:
+  image: canlehui/clh-api-gateway
+  environment:
+    - SPRING_PROFILES_ACTIVE=development
+  ports:
+   - "10000:10000"
+  links:
+   - discovery
+   - usermgmt
+   - webui
+   
+usermgmt:
+  image: canlehui/clh-usermgmt
+  environment:
+    - SPRING_PROFILES_ACTIVE=development
+  ports:
+     - "9004:9004"
+  links:
+   - discovery
+
+webui:
+  image: canlehui/clh-webui
+  environment:
+    - SPRING_PROFILES_ACTIVE=development
+  ports:
+     - "9009:9009"
+  links:
+   - discovery
+   - usermgmt

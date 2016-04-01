@@ -1,0 +1,7 @@
+---
+applications:
+- name: clh-config
+  host: clh-config-${random-word}
+  memory: 512M
+  instances: 1
+  path: target/clh-config-2.0.0.jar
